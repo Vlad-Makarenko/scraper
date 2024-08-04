@@ -9,7 +9,7 @@ interface Catalog {
 }
 
 export async function scraper(): Promise<Catalog[]> {
-	const browser = await puppeteer.launch({ headless: false });
+	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.goto('https://www.tus.si/#s2');
 	const catalogs = await page.$$eval('div.card.card-catalogue', elements => {
