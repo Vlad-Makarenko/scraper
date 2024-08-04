@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import { downloader } from './downloader';
 
 interface Catalog {
 	title: string;
@@ -22,6 +23,11 @@ export async function scraper(): Promise<Catalog[]> {
 			return { title, link, startTime, endTime };
 		});
 	});
+
+	for (const catalog of catalogs) {
+		downloader(catalog.link, `pdf/${catalog.title}.pdf`);
+	}
+
 	await browser.close();
 	return catalogs;
 }
