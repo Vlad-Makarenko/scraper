@@ -9,6 +9,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@types/node": "^22.1.0",
 		"puppeteer": "^22.15.0"
 	},
 	"devDependencies": {
