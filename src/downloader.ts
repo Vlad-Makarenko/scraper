@@ -1,7 +1,14 @@
 import fs from 'fs';
 import https from 'https';
+import path from 'path';
 
 export function downloader(url: string, dest: string) {
+	const dir = path.dirname(dest);
+
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir, { recursive: true });
+	}
+
 	const file = fs.createWriteStream(dest);
 	https
 		.get(url, response => {
