@@ -25,3 +25,16 @@ export function downloader(url: string, dest: string) {
 			console.error('Error downloading the PDF:', err.message);
 		});
 }
+
+export function saveData(dest: string, data: string) {
+	const dir = path.dirname(dest);
+
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir, { recursive: true });
+	}
+
+	fs.writeFile(dest, data, err => {
+		if (err) throw err;
+		console.log('Data saved successfully!');
+	});
+}

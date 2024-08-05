@@ -1,13 +1,10 @@
-import fs from 'fs';
 import { scraper } from './scraper';
+import { saveData } from './downloader';
 
 async function main() {
 	try {
 		const catalogs = await scraper();
-		fs.writeFile('data/catalogs.json', JSON.stringify(catalogs), err => {
-			if (err) throw err;
-			console.log('Catalogs saved successfully!');
-		});
+		saveData('data/catalogs.json', JSON.stringify(catalogs));
 	} catch (error) {
 		console.log(error);
 	}
