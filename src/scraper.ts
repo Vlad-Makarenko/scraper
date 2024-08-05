@@ -4,8 +4,8 @@ import { downloader } from './downloader';
 interface Catalog {
 	title: string;
 	link: string;
-	startTime: string;
-	endTime: string;
+	startDate: string;
+	endDate: string;
 }
 
 export async function scraper(): Promise<Catalog[]> {
@@ -18,9 +18,9 @@ export async function scraper(): Promise<Catalog[]> {
 			const link =
 				element.querySelector('.link-icon.solid.pdf')?.getAttribute('href')?.trim() || '';
 			const timeElements = element.querySelectorAll('p time');
-			const startTime = timeElements[0].getAttribute('datetime')?.trim() || '';
-			const endTime = timeElements[1].getAttribute('datetime')?.trim() || '';
-			return { title, link, startTime, endTime };
+			const startDate = timeElements[0].getAttribute('datetime')?.trim() || '';
+			const endDate = timeElements[1].getAttribute('datetime')?.trim() || '';
+			return { title, link, startDate, endDate };
 		});
 	});
 
